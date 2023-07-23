@@ -47,5 +47,5 @@ class TrashDataset(Dataset):
         img_path = self.files[idx]
         img = self.images[idx]
 
-        label = not ("/notrash" in img_path)
-        return img, int(label)
+        label = "notrash" if ("/notrash" in img_path) else "trash"
+        return img, label

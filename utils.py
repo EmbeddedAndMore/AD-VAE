@@ -24,6 +24,7 @@ def save_images(images, image_paths, data):
     if not os.path.exists(image_paths):
         os.mkdir(image_paths)
     image_paths = os.path.join(image_paths, label + file_name)
+    print("image_paths: ", image_paths)
     images.save(image_paths)
 
 
@@ -64,21 +65,5 @@ def compare_images(real_img, generated_img, threshold=0.4):
     anomaly_img[:, :, :] = real_img
     anomaly_img[np.where(diff_img>0)[0], np.where(diff_img>0)[1]] = [200, 0, 0]
     #anomaly_img[:, :, 0] = anomaly_img[:, :, 0] + 10.0 * np.mean(diff_img, axis=2)
-
-    fig, plots = plt.subplots(1, 4)
-
-    fig.set_figwidth(9)
-    fig.set_tight_layout(True)
-    plots = plots.reshape(-1)
-    plots[0].imshow(real_img, label="real")
-    plots[1].imshow(generated_img)
-    plots[2].imshow(diff_img)
-    plots[3].imshow(anomaly_img)
-
-    plots[0].set_title("real")
-    plots[1].set_title("generated")
-    plots[2].set_title("difference")
-    plots[3].set_title("Anomaly Detection")
-    plt.show()
-
-    return convert2img(anomaly_img)
+    
+    return convert2img(anomaly_img) , (real_img, generated_img, diff_img, anomaly_img)

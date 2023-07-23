@@ -3,3 +3,4 @@ outputs/
 anomaly-detection-mvtec/
 vae_v2_saved_models/
 __pycache__/
+trained_model.zip
