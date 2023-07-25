@@ -112,7 +112,7 @@ class AAE(BaseModel):
         images = data['img']
         paths = os.path.join(self.opt.save_dir, self.opt.object)
         paths = os.path.join(paths, "result")
-        anomaly_img, plt_img = utils.compare_images(images, self.generated_imgs, threshold=self.opt.threshold)
+        anomaly_img, plt_img = utils.compare_images(images, self.generated_imgs, self.opt, threshold=self.opt.threshold)
 
         
 

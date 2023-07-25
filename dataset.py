@@ -5,11 +5,12 @@ from PIL import Image
 from joblib import Parallel, delayed
 from torch.utils.data import Dataset
 import torchvision.transforms as T
+import numpy as np
 
 
 class TrashDataset(Dataset):
 
-    def __init__(self, root_dir, train=True, transform=None, grayscale = True):
+    def __init__(self, root_dir, train=True, transform=None, grayscale = True, subset=False):
         self.images = []
         self.root_dir = root_dir
         self.transform = transform
@@ -20,6 +21,9 @@ class TrashDataset(Dataset):
         self.files = glob.glob(self.dataset_path, recursive=True)
 
         self.files = self.files[:int(len(self.files)/100) * 100]
+
+        if subset:
+            self.files = np.random.choice(self.files, 1000, replace=False).tolist()
 
         if not transform:
             # if no transform is passed do a resize
