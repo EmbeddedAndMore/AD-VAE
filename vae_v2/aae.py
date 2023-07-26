@@ -3,7 +3,7 @@ from . import init_net, networks
 import torch
 from torch.nn import init
 import matplotlib.pyplot as plt
-import utils
+from . import utils
 import os
 
 class AAE(BaseModel):

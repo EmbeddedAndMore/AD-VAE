@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from . import get_scheduler
-import utils
+from .import utils
 
 import os
 import torch
