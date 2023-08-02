@@ -175,5 +175,6 @@ widgetsnbextension==4.0.8
 zict==3.0.0
 zipp==1.0.0
 grad-cam
+opencv-python
 
 

@@ -1,5 +1,7 @@
 venv/
 outputs/
 vae_v2_saved_models/
+vae_v3_saved_models/
+vae_v4_saved_models/
 __pycache__/
 trained_models.zip
