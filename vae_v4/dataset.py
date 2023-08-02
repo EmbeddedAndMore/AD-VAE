@@ -17,9 +17,12 @@ class TrashDataset(Dataset):
         self.transform = transform
         if train:
             self.dataset_path = os.path.join(root_dir,"train/notrash/**/*.png")
+            self.files = glob.glob(self.dataset_path, recursive=True)
         else:
+            valid_paths = np.random.choice(glob.glob(os.path.join(root_dir,"train/notrash/**/*.png"), recursive=True), 4000).tolist()
             self.dataset_path = os.path.join(root_dir,"test/**/*.png")
-        self.files = glob.glob(self.dataset_path, recursive=True)
+            self.files = glob.glob(self.dataset_path, recursive=True)
+            self.files += valid_paths
 
         self.files = self.files[:int(len(self.files)/100) * 100]
 
