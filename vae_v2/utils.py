@@ -50,12 +50,12 @@ def plt_show(img):
     plt.show()
 
 
-def compare_images(real_img, generated_img, opt, threshold=0.4):
+def compare_images(real_img, generated_img, threshold=0.4):
     generated_img = generated_img.type_as(real_img)
     diff_img = np.abs(generated_img - real_img)
-    real_img = convert2img(real_img,opt)
-    generated_img = convert2img(generated_img,opt)
-    diff_img = convert2img(diff_img, opt)
+    real_img = convert2img(real_img)
+    generated_img = convert2img(generated_img)
+    diff_img = convert2img(diff_img)
     
     # thr_r =  (threshold * opt.stds[0] + opt.means[0]) *  255
     # thr_g =  (threshold * opt.stds[1] + opt.means[1]) *  255
@@ -73,4 +73,4 @@ def compare_images(real_img, generated_img, opt, threshold=0.4):
     anomaly_img[np.where(diff_img>0)[0], np.where(diff_img>0)[1]] = [200, 0, 0]
     #anomaly_img[:, :, 0] = anomaly_img[:, :, 0] + 10.0 * np.mean(diff_img, axis=2)
     
-    return convert2img(anomaly_img, opt) , (real_img, generated_img, diff_img, anomaly_img)
+    return convert2img(anomaly_img) , (real_img, generated_img, diff_img, anomaly_img)
